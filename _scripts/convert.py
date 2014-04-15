@@ -19,45 +19,8 @@ args = parser.parse_args()
 
 root_dir = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
 
-force = True
+force = false
 
-class LocalPreprocessor(Preprocessor):
-    
-    js = []
-    css = []
-    
-    def __init__(self, root_dir, config=None, **kw):
-
-        super(LocalPreprocessor, self).__init__(config=config, **kw)
-
-        self.root_dir = root_dir
-        
-        self.get_inlines()
-
-    def get_inlines(self):
-        
-        self.js = []
-        js_file = os.path.join(self.root_dir, 'assets','js','ipython.js')
-        
-        #Load style CSS file.
-        with open(js_file) as file:
-            self.js.append(file.read())
-
-        self.css = []
-        css_file = os.path.join(self.root_dir, 'assets','css','ipython.css')
-        
-        #Load style CSS file.
-        with open(css_file) as file:
-            self.css.append(file.read())
-
-
-    def preprocess(self, nb, resources):
-        resources['ambry'] = {}
-        resources['ambry']['js'] = self.js
-        resources['ambry']['css'] = self.css
-       
-        return nb, resources
-        
         
 def convert(exporter, nb_file, suffix=''):
 
@@ -97,7 +60,7 @@ config=Config({
 exportHtmlA = HTMLExporter()
 exportHtmlB = HTMLExporter(config=config)
 
-exportHtmlB.register_preprocessor(LocalPreprocessor(root_dir), enabled=True)
+
 
 out_files = set()
 
@@ -112,4 +75,47 @@ for file in args.files:
     
     
 print '\n'.join(out_files)
+
+#
+# The preprocessor isn't used, but may need it later. 
+#
+
+class LocalPreprocessor(Preprocessor):
+    
+    js = []
+    css = []
+    
+    def __init__(self, root_dir, config=None, **kw):
+
+        super(LocalPreprocessor, self).__init__(config=config, **kw)
+
+        self.root_dir = root_dir
+        
+        self.get_inlines()
+
+    def get_inlines(self):
+        
+        self.js = []
+        js_file = os.path.join(self.root_dir, 'assets','js','ipython.js')
+        
+        #Load style CSS file.
+        with open(js_file) as file:
+            self.js.append(file.read())
+
+        self.css = []
+        css_file = os.path.join(self.root_dir, 'assets','css','ipython.css')
+        
+        #Load style CSS file.
+        with open(css_file) as file:
+            self.css.append(file.read())
+
+
+    def preprocess(self, nb, resources):
+        resources['ambry'] = {}
+        resources['ambry']['js'] = self.js
+        resources['ambry']['css'] = self.css
+       
+        return nb, resources
+        
+#exportHtmlB.register_preprocessor(LocalPreprocessor(root_dir), enabled=True)
     

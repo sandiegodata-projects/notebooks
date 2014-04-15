@@ -13,6 +13,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
+<script src="/assets/js/ipython.js"></script>
+<link rel="stylesheet" href="/assets/css/ipython.css">
+
 <!-- supplied by the IPython CSSHTMLHeaderPreprocessor -->
 {% for css in resources.inlining.css -%}
     <style type="text/css">
@@ -20,12 +23,6 @@
     </style>
 {% endfor %}
 
-<!-- The next two are local additions -->
-{% for css in resources.ambry.css -%}
-    <style type="text/css">
-    {{ css }}
-    </style>
-{% endfor %}
 
 {% for js in resources.ambry.js -%}
     <script type="text/javascript">
@@ -65,8 +62,7 @@ div#notebook {
 <!-- Custom stylesheet, it must be in the same directory as the html file -->
 <link rel="stylesheet" href="custom.css">
 
-<!-- Site custom css -->
-<link rel="stylesheet" href="/assets/css/ipython.css">
+
 
 <!-- Loading mathjax macro -->
 {{ mathjax() }}
