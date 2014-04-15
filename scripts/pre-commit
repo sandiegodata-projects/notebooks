@@ -1,0 +1,18 @@
+#!/bin/bash
+# Run the convert.py script for all of the .ipynb files. It will return the paths of the
+# files that it converts -- it skips files where the HTML file is younger than the source.
+# Then it adds any new files to the commit
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd -P )"
+DIR=$(dirname $DIR)
+
+echo Looking for files to convert, from $DIR
+
+out_files=$(find $DIR  -name .ipynb_checkpoints -prune -o -name '*.ipynb'  -print0 | \
+    xargs -0 $DIR/scripts/convert.py)
+
+for out_file in $out_files; do
+    git add $out_file
+    echo Add converted file to commit: $out_file
+
+done
