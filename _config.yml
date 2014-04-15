@@ -1,3 +1,4 @@
-name: Your New Jekyll Site
-markdown: redcarpet
+name: Civic Knowledge Analysis Notebooks
+markdown: kramdown
 pygments: true
+
