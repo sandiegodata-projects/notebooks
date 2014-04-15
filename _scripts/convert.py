@@ -35,14 +35,14 @@ class LocalPreprocessor(Preprocessor):
     def get_inlines(self):
         
         self.js = []
-        js_file = os.path.join(self.root_dir, 'scripts','ipython.js')
+        js_file = os.path.join(self.root_dir, '_scripts','ipython.js')
         
         #Load style CSS file.
         with open(js_file) as file:
             self.js.append(file.read())
 
         self.css = []
-        css_file = os.path.join(self.root_dir, 'scripts','ipython.css')
+        css_file = os.path.join(self.root_dir, '_scripts','ipython.css')
         
         #Load style CSS file.
         with open(css_file) as file:
