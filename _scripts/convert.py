@@ -19,6 +19,8 @@ args = parser.parse_args()
 
 root_dir = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
 
+force = True
+
 class LocalPreprocessor(Preprocessor):
     
     js = []
@@ -35,14 +37,14 @@ class LocalPreprocessor(Preprocessor):
     def get_inlines(self):
         
         self.js = []
-        js_file = os.path.join(self.root_dir, '_scripts','ipython.js')
+        js_file = os.path.join(self.root_dir, 'assets','js','ipython.js')
         
         #Load style CSS file.
         with open(js_file) as file:
             self.js.append(file.read())
 
         self.css = []
-        css_file = os.path.join(self.root_dir, '_scripts','ipython.css')
+        css_file = os.path.join(self.root_dir, 'assets','css','ipython.css')
         
         #Load style CSS file.
         with open(css_file) as file:
@@ -66,7 +68,7 @@ def convert(exporter, nb_file, suffix=''):
     if os.path.exists(out_file):
         out_md = modification_date(out_file)
 
-        if out_md > nb_md:
+        if out_md > nb_md and not force:
             return None
 
 
@@ -88,7 +90,7 @@ def convert(exporter, nb_file, suffix=''):
 config=Config({
     'HTMLExporter':{
         'template_file':'local',
-        'template_path': [os.path.join(root_dir,'scripts')]
+        'template_path': [os.path.join(root_dir,'_scripts')]
     },
 })
 

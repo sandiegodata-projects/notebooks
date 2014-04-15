@@ -1,9 +1,9 @@
-div.output_prompt {
-    display: inline-block;
-    visibility: hidden;
+
+div.prompt {
+    display: none;
 }
 
-div.input_prompt {
-    display: inline-block;
-    visibility: hidden;
+div.toggle_input_cells {
+    float: right;
 }
+

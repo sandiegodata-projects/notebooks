@@ -20,7 +20,7 @@
     </style>
 {% endfor %}
 
-<!-- THe next two are local additions -->
+<!-- The next two are local additions -->
 {% for css in resources.ambry.css -%}
     <style type="text/css">
     {{ css }}

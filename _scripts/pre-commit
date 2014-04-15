@@ -9,7 +9,7 @@ DIR=$(dirname $DIR)
 echo Looking for files to convert, from $DIR
 
 out_files=$(find $DIR  -name .ipynb_checkpoints -prune -o -name '*.ipynb'  -print0 | \
-    xargs -0 $DIR/scripts/convert.py)
+    xargs -0 $DIR/_scripts/convert.py)
 
 for out_file in $out_files; do
     git add $out_file

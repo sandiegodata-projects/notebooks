@@ -7,9 +7,8 @@ root_dir = os.path.realpath(os.path.dirname(os.path.dirname(__file__)))
 
 notebook_dirs = {}
 
-t="""
----
-layout: sidebar
+t="""---
+layout: default
 title: {title}
 ---
 
@@ -32,7 +31,7 @@ for dir_, files in notebook_dirs.items():
         plain_file = title.replace(' ','_')+'.html'
         code_file = title.replace(' ','_')+'-code.html'
         
-        link = "* [{}]({}/{})".format(title, path, plain_file)
+        link = "* [{}]({})".format(title, plain_file)
         
         links.append(link)
         

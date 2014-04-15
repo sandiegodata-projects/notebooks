@@ -1,7 +1,7 @@
 ---
-layout: sidebar
+layout: default
 title: Landuse
 ---
 
-* [Parcels](landuse/Parcels.html)
+* [Parcels](Parcels.html)
 
