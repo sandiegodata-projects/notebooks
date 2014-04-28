@@ -27,6 +27,9 @@ for dir_, files in notebook_dirs.items():
     path = dir_.split('/').pop()
     for fn in files:
         
+        if fn.startswith('_'):
+            continue
+        
         title = fn.replace('.ipynb','')
         plain_file = title.replace(' ','_')+'.html'
         code_file = title.replace(' ','_')+'-code.html'

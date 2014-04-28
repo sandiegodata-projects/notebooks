@@ -19,7 +19,7 @@ args = parser.parse_args()
 
 root_dir = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
 
-force = false
+force = True
 
         
 def convert(exporter, nb_file, suffix=''):
@@ -61,10 +61,12 @@ exportHtmlA = HTMLExporter()
 exportHtmlB = HTMLExporter(config=config)
 
 
-
 out_files = set()
 
 for file in args.files:
+    
+    if file.startswith('_'):
+        continue
     
     for exporter, suffix in ( (exportHtmlA,'-code'), (exportHtmlB,'')):
         

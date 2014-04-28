@@ -8,3 +8,8 @@ body {
 div.fixed-height {
     height: 200px;
 }
+
+
+body .jumbotron .container h1 {
+    font-size: 42px;
+}
